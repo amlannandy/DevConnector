@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setAlert } from '../../store/actions/alert';
+import { register } from '../../store/actions/auth';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -11,24 +12,27 @@ const Register = () => {
     password: '',
     confirmpassword: '',
   });
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const { name, email, password, confirmpassword } = formData;
-  const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !email || !password || !confirmpassword) {
-      dispatch(setAlert('Please fill up all the fields', 'warning'));
-      return;
-    }
     if (password !== confirmpassword) {
       dispatch(setAlert("Passwords don't match", 'danger'));
       return;
     }
+    dispatch(register({ name, email, password }));
   };
+
+  //Redirect if Logged in
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
@@ -44,6 +48,7 @@ const Register = () => {
             value={name}
             name='name'
             onChange={(event) => onChange(event)}
+            required
           />
         </div>
         <div className='form-group'>
@@ -53,6 +58,7 @@ const Register = () => {
             name='email'
             value={email}
             onChange={(event) => onChange(event)}
+            required
           />
           <small className='form-text'>
             This site uses Gravatar, so if you want a profile image, use a
@@ -66,6 +72,7 @@ const Register = () => {
             name='password'
             value={password}
             onChange={(event) => onChange(event)}
+            required
           />
         </div>
         <div className='form-group'>
@@ -75,6 +82,7 @@ const Register = () => {
             value={confirmpassword}
             name='confirmpassword'
             onChange={(event) => onChange(event)}
+            required
           />
         </div>
         <input type='submit' value='Register' className='btn btn-primary' />
