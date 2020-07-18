@@ -19,12 +19,12 @@ const Login = () => {
 
   return (
     <Fragment>
-      <h1 class='large text-primary'>Sign in</h1>
-      <p class='lead'>
-        <i class='fas fa-user'></i> Sign into your Account
+      <h1 className='large text-primary'>Sign in</h1>
+      <p className='lead'>
+        <i className='fas fa-user'></i> Sign into your Account
       </p>
-      <form class='form' onSubmit={onSubmit}>
-        <div class='form-group'>
+      <form className='form' onSubmit={onSubmit}>
+        <div className='form-group'>
           <input
             type='email'
             placeholder='Email Address'
@@ -33,7 +33,7 @@ const Login = () => {
             onChange={(event) => onChange(event)}
           />
         </div>
-        <div class='form-group'>
+        <div className='form-group'>
           <input
             type='password'
             placeholder='Password'
@@ -44,7 +44,7 @@ const Login = () => {
         </div>
         <input type='submit' value='Register' className='btn btn-primary' />
       </form>
-      <p class='my-1'>
+      <p className='my-1'>
         New here?
         <Link to='/register'>Register</Link>
       </p>
