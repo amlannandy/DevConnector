@@ -20,10 +20,13 @@ const Register = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!name || !email || !password || !confirmpassword) {
+      dispatch(setAlert('Please fill up all the fields', 'warning'));
+      return;
+    }
     if (password !== confirmpassword) {
       dispatch(setAlert("Passwords don't match", 'danger'));
-    } else {
-      console.log('Success');
+      return;
     }
   };
 
