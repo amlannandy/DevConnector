@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <nav className='navbar bg-dark'>
       <h1>
-        <Link to='/'>
+        <Link to={isAuthenticated ? '/dashboard' : '/'}>
           <i className='fas fa-code'></i> DevConnector
         </Link>
       </h1>

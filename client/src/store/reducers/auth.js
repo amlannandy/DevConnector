@@ -35,7 +35,14 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case LOGOUT:
-      console.log('Log out');
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        user: null,
+      };
     case AUTH_ERROR:
     case LOGIN_FAILURE:
     case REGISTER_FAILURE:

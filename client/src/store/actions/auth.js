@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
+import { CLEAR_PROFILE } from './profile';
 import setAuthToken from '../../utils/setAuthToken';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -71,6 +72,6 @@ export const login = (email, password) => async (dispatch) => {
 
 //Logout User
 export const logout = () => (dispatch) => {
-  console.log('Log test');
+  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };
