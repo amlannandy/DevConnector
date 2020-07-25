@@ -7,6 +7,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
 } from '../actions/auth';
+import { DELETE_ACCOUNT } from '../actions/profile';
 
 const initialState = {
   token: localStorage.getItem('token'),
@@ -43,6 +44,7 @@ export default function (state = initialState, action) {
         loading: false,
         user: null,
       };
+    case DELETE_ACCOUNT:
     case AUTH_ERROR:
     case LOGIN_FAILURE:
     case REGISTER_FAILURE:

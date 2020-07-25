@@ -1,25 +1,67 @@
 import React, { useState, Fragment } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 
 import { createProfile } from '../../store/actions/profile';
 
-const CreateProfile = ({ history }) => {
+const EditProfile = ({ history }) => {
   const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profile);
 
   const [formData, setFormData] = useState({
-    company: '',
-    website: '',
-    location: '',
-    status: '',
-    skills: '',
-    githubusername: '',
-    bio: '',
-    twitter: '',
-    facebook: '',
-    linkedin: '',
-    youtube: '',
-    instagram: '',
+    company:
+      profile.loading || !profile.profile.company
+        ? ''
+        : profile.profile.company,
+    website:
+      profile.loading || !profile.profile.website
+        ? ''
+        : profile.profile.website,
+    location:
+      profile.loading || !profile.profile.location
+        ? ''
+        : profile.profile.location,
+    status:
+      profile.loading || !profile.profile.status ? '' : profile.profile.status,
+    skills:
+      profile.loading || !profile.profile.skills
+        ? ''
+        : profile.profile.skills.join(','),
+    githubusername:
+      profile.loading || !profile.profile.githubusername
+        ? ''
+        : profile.profile.githubusername,
+    bio: profile.loading || !profile.profile.bio ? '' : profile.profile.bio,
+    twitter:
+      profile.loading || !profile.profile.social
+        ? ''
+        : !profile.profile.social[0]
+        ? ''
+        : profile.profile.social[0].twitter,
+    facebook:
+      profile.loading || !profile.profile.social
+        ? ''
+        : !profile.profile.social[0].facebook
+        ? ''
+        : profile.profile.social[0].facebook,
+    linkedin:
+      profile.loading || !profile.profile.social
+        ? ''
+        : !profile.profile.social[0].linkedin
+        ? ''
+        : profile.profile.social[0].linkedin,
+    youtube:
+      profile.loading || !profile.profile.social
+        ? ''
+        : !profile.profile.social[0].youtube
+        ? ''
+        : profile.profile.social[0].youtube,
+    instagram:
+      profile.loading || !profile.profile.social
+        ? ''
+        : !profile.profile.social[0].instagram
+        ? ''
+        : profile.profile.social[0].instagram,
   });
 
   const [displaySocial, setDisplaySocial] = useState(false);
@@ -44,7 +86,7 @@ const CreateProfile = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProfile(formData, history));
+    dispatch(createProfile(formData, history, true));
   };
 
   return (
@@ -223,4 +265,4 @@ const CreateProfile = ({ history }) => {
   );
 };
 
-export default withRouter(CreateProfile);
+export default withRouter(EditProfile);
