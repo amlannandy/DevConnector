@@ -9,10 +9,13 @@ import PrivateRoute from './components/routing/PrivateRoute';
 
 import store from './store/store';
 import Login from './components/auth/Login';
+import Posts from './components/posts/Posts';
 import Alert from './components/layout/Alert';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
+import Profile from './components/profile/Profile';
+import Profiles from './components/profiles/Profiles';
 import Dashboard from './components/dashboard/Dashboard';
 import EditProfile from './components/profile-form/EditProfile';
 import AddEducation from './components/profile-form/AddEducation';
@@ -40,6 +43,8 @@ const App = () => {
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <Route exact path='/profiles' component={Profiles} />
+              <Route exact path='/profile/:id' component={Profile} />
               <PrivateRoute
                 exact
                 path='/create-profile'
@@ -60,6 +65,7 @@ const App = () => {
                 path='/add-education'
                 component={AddEducation}
               />
+              <PrivateRoute exact path='/posts' component={Posts} />
             </Switch>
           </section>
         </Fragment>
