@@ -13,7 +13,14 @@ const Posts = () => {
 
   const { posts, loading } = useSelector((state) => state.posts);
 
-  return <Fragment></Fragment>;
+  if (loading) {
+    return <Spinner />;
+  }
+
+  return <Fragment>
+    <h1 class="large text-primary">Posts</h1>
+    <p class="lead"><i class="fas fa-user"></i> Welcome to the community!</p>
+  </Fragment>;
 };
 
 export default Posts;
