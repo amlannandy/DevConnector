@@ -1,5 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://amlan123:amlan123@devconnector.g6anc.mongodb.net/devconnect?retryWrites=true&w=majority",
-  "jwtSecret": "moitoken",
-  "githubtoken": "174aa9c28a7bde259c218c8244be1fe79d489c37"
-}
